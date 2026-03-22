@@ -1,13 +1,16 @@
 package lab3;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Application {
 
-    public static void main()
+    public void main()
     {
         List<String> lista1 = new ArrayList<>();
         List<String> lista2 = new ArrayList<>();
@@ -27,7 +30,6 @@ public class Application {
         {
             e.printStackTrace();
         }
-
         String[] text_split= text_citit.split("\n");
         for(String s:text_split)
         {
@@ -43,5 +45,16 @@ public class Application {
             lista2.add("\n");
         }
         System.out.println(lista2);
+
+        try
+        {
+            Path path= Paths.get("out.txt");
+            Files.write(path, lista1);
+            Files.write(path, lista2, StandardOpenOption.APPEND);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
