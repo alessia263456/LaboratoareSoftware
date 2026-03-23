@@ -30,6 +30,7 @@ public class Application {
         {
             e.printStackTrace();
         }
+
         String[] text_split= text_citit.split("\n");
         for(String s:text_split)
         {
