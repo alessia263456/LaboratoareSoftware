@@ -64,6 +64,14 @@ public class Application {
 
     }
 
+    public static void Afisare_Map(Map<Integer, Student> map)
+    {
+        Iterator iterator=map.keySet().iterator();
+        while(iterator.hasNext())
+        {
+            System.out.println(map.get(iterator.next()).toString());
+        }
+    }
     public static void main() {
         List<Student> lista_studenti = new ArrayList<>();
         Citire_Fisier(lista_studenti,"studenti_in.txt");
@@ -99,7 +107,38 @@ public class Application {
             e.printStackTrace();
         }
 
+        //lab 4
 
+        HashMap<Integer,Student> map_studenti=new HashMap<Integer, Student>();
+        for(Student s: lista_studenti)
+        {
+            map_studenti.put(s.getNumarMatricol(),s);
+        }
+        System.out.println(map_studenti);
+
+        String text_citit = "";
+        try
+        {
+            Path path= Paths.get("src/Students/note_anon.txt");
+            try(Scanner sc=new Scanner(path))
+            {
+                while (sc.hasNextLine())
+                {
+                    text_citit=sc.nextLine();
+                    String[] split=text_citit.split(",");
+                    Integer nr_matricol=Integer.parseInt(split[0]);
+                    float nota=Float.parseFloat(split[1]);
+                    map_studenti.get(nr_matricol).setNota(nota);
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        System.out.println("\nStudentii cu note:");
+        Afisare_Map(map_studenti);
 
     }
 }

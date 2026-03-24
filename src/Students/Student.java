@@ -6,6 +6,7 @@ public class Student implements Comparable<Student>
 {
     private Integer numarMatricol;
     private String prenume, nume, formatieDeStudiu;
+    private float nota;
 
     Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu)
     {
@@ -30,12 +31,16 @@ public class Student implements Comparable<Student>
         return formatieDeStudiu;
     }
 
+    public void setNota(float nota)
+    {
+        this.nota=nota;
+    }
 
 
     @Override
     public String toString()
     {
-        return String.format("%15d %15s %15s %15s", numarMatricol, prenume, nume, formatieDeStudiu);
+        return String.format("%15d %15s %15s %15s %15s", numarMatricol, prenume, nume, formatieDeStudiu, nota);
     }
 
     @Override
@@ -46,12 +51,14 @@ public class Student implements Comparable<Student>
         return Objects.equals(numarMatricol, s.numarMatricol) &&
                 Objects.equals(prenume, s.prenume) &&
                 Objects.equals(nume, s.nume) &&
-                Objects.equals(formatieDeStudiu, s.formatieDeStudiu);
+                Objects.equals(formatieDeStudiu, s.formatieDeStudiu) &&
+                Objects.equals(nota, s.nota);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(numarMatricol, prenume, nume, formatieDeStudiu);
+    public int hashCode()
+    {
+        return Objects.hash(numarMatricol, prenume, nume, formatieDeStudiu, nota);
     }
 
     @Override
