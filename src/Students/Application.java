@@ -76,6 +76,8 @@ public class Application {
                         return s1.getNume().compareTo((s2.getNume()));
                     }
                 });
+
+
         try
         {
             Scriere_fisier(lista_studenti, "studenti_out.txt");
@@ -85,6 +87,10 @@ public class Application {
         }
 
         Collections.sort(lista_studenti);
+        lista_studenti.sort(
+                Comparator.comparing(Student::getFormatieDeStudiu).thenComparing(Student::getNume)
+        );
+
         try
         {
             Scriere_fisier(lista_studenti, "studenti_out_sorted.txt");
@@ -92,5 +98,8 @@ public class Application {
         catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
     }
 }
