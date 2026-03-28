@@ -72,6 +72,26 @@ public class Application {
             System.out.println(map.get(iterator.next()).toString());
         }
     }
+
+    public static float gasesteNota(String prenume, String nume, HashMap<Integer, Student> studenti)
+    {
+        HashMap<String, Student> aux_studenti=new HashMap<>();
+        String key;
+        for(Student s: studenti.values())
+        {
+            key=s.getPrenume() + " " + s.getNume();
+            aux_studenti.put(key, s);
+        }
+
+        key=prenume + " " + nume;
+        if(aux_studenti.containsKey(key))
+        {
+            return aux_studenti.get(key).getNota();
+        }
+        else
+            return 0;
+    }
+
     public static void main() {
         List<Student> lista_studenti = new ArrayList<>();
         Citire_Fisier(lista_studenti,"studenti_in.txt");
@@ -140,5 +160,9 @@ public class Application {
         System.out.println("\nStudentii cu note:");
         Afisare_Map(map_studenti);
 
+        float notaM=gasesteNota("Bianca","Popescu", map_studenti);
+        float notaN=gasesteNota("Ioan","Popa", map_studenti);
+        System.out.println("Bianca Popescu: "+notaM);
+        System.out.println("Ioan Popa: "+notaN);
     }
 }

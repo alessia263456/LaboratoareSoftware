@@ -31,6 +31,10 @@ public class Student implements Comparable<Student>
         return formatieDeStudiu;
     }
 
+    public float getNota()
+    {
+        return nota;
+    }
     public void setNota(float nota)
     {
         this.nota=nota;
