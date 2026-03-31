@@ -73,9 +73,9 @@ public class Application {
         }
     }
 
-    public static float gasesteNota(String prenume, String nume, HashMap<Integer, Student> studenti)
+    public static float gasesteNota(String prenume, String nume, Map<Integer, Student> studenti)
     {
-        HashMap<String, Student> aux_studenti=new HashMap<>();
+        Map<String, Student> aux_studenti=new HashMap<>();
         String key;
         for(Student s: studenti.values())
         {
@@ -129,7 +129,7 @@ public class Application {
 
         //lab 4
 
-        HashMap<Integer,Student> map_studenti=new HashMap<Integer, Student>();
+        Map<Integer,Student> map_studenti=new HashMap<Integer, Student>();
         for(Student s: lista_studenti)
         {
             map_studenti.put(s.getNumarMatricol(),s);
@@ -164,5 +164,6 @@ public class Application {
         float notaN=gasesteNota("Ioan","Popa", map_studenti);
         System.out.println("Bianca Popescu: "+notaM);
         System.out.println("Ioan Popa: "+notaN);
+
     }
 }
