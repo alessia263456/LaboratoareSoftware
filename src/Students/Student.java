@@ -6,7 +6,15 @@ public class Student implements Comparable<Student>
 {
     private Integer numarMatricol;
     private String prenume, nume, formatieDeStudiu;
-    private float nota;
+    private double nota;
+
+    public Student() {
+        numarMatricol = null;
+        prenume = null;
+        nume = null;
+        formatieDeStudiu = null;
+        nota = 0;
+    }
 
     Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu)
     {
@@ -14,6 +22,14 @@ public class Student implements Comparable<Student>
         this.prenume=prenume;
         this.nume=nume;
         this.formatieDeStudiu=formatieDeStudiu;
+    }
+    Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu, double nota)
+    {
+        this.numarMatricol=numarMatricol;
+        this.prenume=prenume;
+        this.nume=nume;
+        this.formatieDeStudiu=formatieDeStudiu;
+        this.nota=nota;
     }
 
     public Integer getNumarMatricol() {
@@ -31,11 +47,11 @@ public class Student implements Comparable<Student>
         return formatieDeStudiu;
     }
 
-    public float getNota()
+    public double getNota()
     {
         return nota;
     }
-    public void setNota(float nota)
+    public void setNota(double nota)
     {
         this.nota=nota;
     }
