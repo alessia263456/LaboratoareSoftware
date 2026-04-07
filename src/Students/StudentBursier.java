@@ -9,6 +9,12 @@ public class StudentBursier extends Student {
     {
         super(numarMatricol, prenume, nume, formatieDeStudiu, nota);
         this.cuantumBursa = cuantumBursa;
+        setNota(13);
+    }
+
+    public void setNota(double nota)
+    {
+        super.setNota(nota);
     }
 
     @Override

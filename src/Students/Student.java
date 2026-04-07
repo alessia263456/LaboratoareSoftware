@@ -6,14 +6,15 @@ public class Student implements Comparable<Student>
 {
     private Integer numarMatricol;
     private String prenume, nume, formatieDeStudiu;
-    private double nota;
+    private double nota=11;
 
     public Student() {
-        numarMatricol = null;
+       /* numarMatricol = null;
         prenume = null;
         nume = null;
         formatieDeStudiu = null;
-        nota = 0;
+        nota = 0;*/
+        nota=12;
     }
 
     Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu)

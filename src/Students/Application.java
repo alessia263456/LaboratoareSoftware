@@ -20,7 +20,7 @@ public class Application {
         return new Student(nr_matricol, prenume, nume, formatie);
     }
 
-    public static void Citire_Fisier(List<Student> lista, String FileName) {
+    public static void citireFisier(List<Student> lista, String FileName) {
         String text_citit = "";
         try {
             Path path = Paths.get(FileName);
@@ -35,18 +35,19 @@ public class Application {
         }
     }
 
-    public static void Afisare_lista(List<Student> lista) {
+    public static void afisareLista(List<Student> lista) {
         for (Student s : lista) {
             System.out.println(s);
         }
     }
 
-    public static void Scriere_fisier(Collection<Student> colectie, String FileName) throws IOException {
+    public static void scriereFisier(Collection<Student> colectie, String FileName) throws IOException {
         Path path = Paths.get(FileName);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (Student s : colectie) {
                 writer.write(s.toString());
                 writer.newLine();
+
             }
         }
 
@@ -76,8 +77,8 @@ public class Application {
 
     public static void main() {
         List<Student> lista_studenti = new ArrayList<>();
-        Citire_Fisier(lista_studenti, "studenti_in.txt");
-        Afisare_lista(lista_studenti);
+        citireFisier(lista_studenti, "studenti_in.txt");
+        afisareLista(lista_studenti);
         Collections.sort(lista_studenti,
                 new Comparator<Student>() {
                     public int compare(Student s1, Student s2) {
@@ -87,7 +88,7 @@ public class Application {
 
 
         try {
-            Scriere_fisier(lista_studenti, "studenti_out.txt");
+            scriereFisier(lista_studenti, "studenti_out.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,7 +99,7 @@ public class Application {
         );
 
         try {
-            Scriere_fisier(lista_studenti, "studenti_out_sorted.txt");
+            scriereFisier(lista_studenti, "studenti_out_sorted.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,10 +144,22 @@ public class Application {
         bursieri.add(new StudentBursier(1026, "Anamaria", "Prodan", "TI131/1", 8.90, 745.50));
         bursieri.add(new StudentBursier(1029, "Bianca", "Popescu", "TI131/1,", 9.10, 780.80));
         try {
-            Scriere_fisier(bursieri, "bursieri_out.txt");
+            scriereFisier(bursieri, "bursieri_out.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        for(Student s : bursieri) {
+            System.out.println(s);
+        }
+        for(int i=0; i< bursieri.size(); i++)
+        {
+            System.out.println(bursieri.get(i));
+        }
+
+        bursieri.forEach(System.out::println);
+
+        bursieri.forEach((Object o)->System.out.println(o));
     }
+
 }
 

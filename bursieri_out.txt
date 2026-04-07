@@ -1,4 +1,4 @@
-           1025          Andrei            Popa        ISM141/2             8.7, cuantum bursa = 725.5
-           1024            Ioan        Mihalcea        ISM141/1             9.8, cuantum bursa = 801.1
-           1026        Anamaria          Prodan         TI131/1             8.9, cuantum bursa = 745.5
-           1029          Bianca         Popescu        TI131/1,             9.1, cuantum bursa = 780.8
+           1025          Andrei            Popa        ISM141/2            13.0, cuantum bursa = 725.5
+           1024            Ioan        Mihalcea        ISM141/1            13.0, cuantum bursa = 801.1
+           1026        Anamaria          Prodan         TI131/1            13.0, cuantum bursa = 745.5
+           1029          Bianca         Popescu        TI131/1,            13.0, cuantum bursa = 780.8
