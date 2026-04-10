@@ -21,6 +21,9 @@ public class DoubleCalculator  extends ACalculator<Double> {
         return this;
     }
     public  DoubleCalculator divide(Double a) {
+        if (a == 0.0) {
+            throw new ArithmeticException("Division by zero");
+        }
         state = (Double)state / a;
         return this;
     }
