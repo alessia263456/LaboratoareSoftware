@@ -121,7 +121,9 @@ public class NewIntCalculatorTest {
     @Test
     public void testDivideBy0()
     {
-
+        calculator.init();
+        calculator.add(1);
+        Assertions.assertThrows(ArithmeticException.class, () -> calculator.divide(0));
     }
 
     @AfterEach
