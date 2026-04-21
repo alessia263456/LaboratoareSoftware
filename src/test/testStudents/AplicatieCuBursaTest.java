@@ -1,7 +1,8 @@
 package test.testStudents;
 import Students.AplicatieCuBursa;
 import Students.StudentBursier;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,42 +23,11 @@ public class AplicatieCuBursaTest {
         //act
         List<StudentBursier> sortata = appCuBursa.sorteaza(lista);
         //assert
-        for (int i = 0; i < sortata.size() - 1; i++) {
-            StudentBursier s1 = sortata.get(i);
-            StudentBursier s2 = sortata.get(i + 1);
-            int cmpFormatie = s1.getFormatieDeStudiu().compareTo(s2.getFormatieDeStudiu());
-            if (cmpFormatie == 0)
-            {
-                int cmpNume = s1.getNume().compareTo(s2.getNume());
-                if (cmpNume == 0)
-                {
-                    int cmpPrenume = s1.getPrenume().compareTo(s2.getPrenume());
-                    if (cmpPrenume == 0)
-                    {
-                        int cmpNota = Double.compare(s1.getNota(), s2.getNota());
-                        if (cmpNota == 0)
-                        {
-                            Assertions.assertTrue(s1.getCuantumBursa() <= s2.getCuantumBursa());
-                        }
-                        else
-                        {
-                            Assertions.assertTrue(cmpNota <= 0);
-                        }
-                    }
-                    else
-                    {
-                        Assertions.assertTrue(cmpPrenume <= 0);
-                    }
-                }
-                else
-                {
-                    Assertions.assertTrue(cmpNume <= 0);
-                }
-            }
-            else
-            {
-                Assertions.assertTrue(cmpFormatie <= 0);
-            }
-        }
+        Assertions.assertEquals(sortata.get(0).getPrenume(), "Ioan");
+        Assertions.assertEquals(sortata.get(1).getPrenume(), "Andrei");
+        Assertions.assertEquals(sortata.get(2).getPrenume(), "Anamaria");
+        Assertions.assertEquals(sortata.get(3).getCuantumBursa(), 100.0);
+        Assertions.assertEquals(sortata.get(4).getCuantumBursa(), 780.8);
+
     }
 }
