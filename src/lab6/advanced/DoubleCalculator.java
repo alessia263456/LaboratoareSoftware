@@ -2,7 +2,7 @@ package lab6.advanced;
 
 public class DoubleCalculator  extends ACalculator<Double> {
     @Override
-    DoubleCalculator init() {
+    public DoubleCalculator init() {
         state = 0.0;
         return this;
     }

@@ -1,4 +1,6 @@
-package Students;
+package test.testStudents;
+import Students.AplicatieCuBursa;
+import Students.StudentBursier;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;

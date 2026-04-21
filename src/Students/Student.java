@@ -16,14 +16,14 @@ public class Student implements Comparable<Student>
         nota = 0;
     }
 
-    Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu)
+    public Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu)
     {
         this.numarMatricol=numarMatricol;
         this.prenume=prenume;
         this.nume=nume;
         this.formatieDeStudiu=formatieDeStudiu;
     }
-    Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu, double nota)
+    public Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu, double nota)
     {
         this.numarMatricol=numarMatricol;
         this.prenume=prenume;

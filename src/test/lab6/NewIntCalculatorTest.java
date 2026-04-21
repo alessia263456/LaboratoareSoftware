@@ -1,4 +1,5 @@
-package lab6.advanced;
+package test.lab6;
+import lab6.advanced.NewIntCalculator;
 import org.junit.jupiter.api.*;
 
 public class NewIntCalculatorTest {

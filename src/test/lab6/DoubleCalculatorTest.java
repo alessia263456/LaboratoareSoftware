@@ -1,5 +1,6 @@
-package lab6.advanced;
+package test.lab6;
 
+import lab6.advanced.DoubleCalculator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
