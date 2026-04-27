@@ -38,20 +38,18 @@ public class StudentBursier{
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        StudentBursier that = (StudentBursier) o;
-        return Double.compare(cuantumBursa, that.cuantumBursa) == 0;
+        if (!(o instanceof StudentBursier that)) return false;
+        return Double.compare(getCuantumBursa(), that.getCuantumBursa()) == 0 && Objects.equals(student, that.student);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), cuantumBursa);
+        return Objects.hash(student.hashCode(), cuantumBursa);
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", cuantum bursa = " + cuantumBursa;
+        return student.toString() + ", cuantum bursa = " + cuantumBursa;
     }
 
 
