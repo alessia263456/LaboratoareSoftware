@@ -2,11 +2,13 @@ package Students;
 
 import java.util.Objects;
 
-public class Student implements Comparable<Student>
+public final class Student implements Comparable<Student>
 {
-    private Integer numarMatricol;
-    private String prenume, nume, formatieDeStudiu;
-    private double nota;
+    private final Integer numarMatricol;
+    private final String prenume;
+    private final String nume;
+    private final String formatieDeStudiu;
+    private final double nota;
 
     public Student() {
         numarMatricol = null;
@@ -16,13 +18,6 @@ public class Student implements Comparable<Student>
         nota = 0;
     }
 
-    public Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu)
-    {
-        this.numarMatricol=numarMatricol;
-        this.prenume=prenume;
-        this.nume=nume;
-        this.formatieDeStudiu=formatieDeStudiu;
-    }
     public Student(Integer numarMatricol, String prenume, String nume, String formatieDeStudiu, double nota)
     {
         this.numarMatricol=numarMatricol;
@@ -51,11 +46,6 @@ public class Student implements Comparable<Student>
     {
         return nota;
     }
-    public void setNota(double nota)
-    {
-        this.nota=nota;
-    }
-
 
     @Override
     public String toString()

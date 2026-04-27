@@ -17,7 +17,7 @@ public class Application {
         prenume = split[1];
         nume = split[2];
         formatie = split[3];
-        return new Student(nr_matricol, prenume, nume, formatie);
+        return new Student(nr_matricol, prenume, nume, formatie, 0);
     }
 
     public static void citireFisier(List<Student> lista, String FileName) {
@@ -52,8 +52,19 @@ public class Application {
         }
 
     }
+    public static void scriereFisierBursieri(Collection<StudentBursier> colectie, String FileName) throws IOException {
+        Path path = Paths.get(FileName);
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            for (StudentBursier s : colectie) {
+                writer.write(s.toString());
+                writer.newLine();
 
-    public static void Afisare_Map(Map<Integer, Student> map) {
+            }
+        }
+
+    }
+
+    public static void afisareMap(Map<Integer, Student> map) {
         Iterator iterator = map.keySet().iterator();
         while (iterator.hasNext()) {
             System.out.println(map.get(iterator.next()).toString());
@@ -73,6 +84,22 @@ public class Application {
             return aux_studenti.get(key).getNota();
         } else
             return 0;
+    }
+
+    public static void mutaStudent(Map<Integer, Student> map, int nrMatricol, String formatieNoua) {
+        if (map.containsKey(nrMatricol)) {
+            Student s = map.get(nrMatricol);
+            Student studentNou = new Student(
+                    s.getNumarMatricol(),
+                    s.getPrenume(),
+                    s.getNume(),
+                    formatieNoua,
+                    s.getNota()
+            );
+            map.put(nrMatricol, studentNou);
+        } else {
+            System.out.println("Studentul cu numarul matricol " + nrMatricol + " nu a fost gasit.");
+        }
     }
 
     public static void main() {
@@ -121,7 +148,18 @@ public class Application {
                     String[] split = text_citit.split(",");
                     Integer nr_matricol = Integer.parseInt(split[0]);
                     float nota = Float.parseFloat(split[1]);
-                    map_studenti.get(nr_matricol).setNota(nota);
+
+                    Student old = map_studenti.get(nr_matricol);
+                    if (old != null) {
+                        Student updated = new Student(
+                                old.getNumarMatricol(),
+                                old.getPrenume(),
+                                old.getNume(),
+                                old.getFormatieDeStudiu(),
+                                nota
+                        );
+                        map_studenti.put(nr_matricol, updated);
+                    }
                 }
             }
         } catch (IOException e) {
@@ -129,7 +167,7 @@ public class Application {
         }
 
         System.out.println("\nStudentii cu note:");
-        Afisare_Map(map_studenti);
+        afisareMap(map_studenti);
 
         double notaM = gasesteNota("Bianca", "Popescu", map_studenti);
         double notaN = gasesteNota("Ioan", "Popa", map_studenti);
@@ -138,17 +176,17 @@ public class Application {
 
         //Lab 5
 
-        List<Student> bursieri = new ArrayList<>();
+        List<StudentBursier> bursieri = new ArrayList<>();
         bursieri.add(new StudentBursier(1025, "Andrei", "Popa", "ISM141/2", 8.70, 725.50));
         bursieri.add(new StudentBursier(1024, "Ioan", "Mihalcea", "ISM141/1", 9.80, 801.10));
         bursieri.add(new StudentBursier(1026, "Anamaria", "Prodan", "TI131/1", 8.90, 745.50));
-        bursieri.add(new StudentBursier(1029, "Bianca", "Popescu", "TI131/1,", 9.10, 780.80));
+        bursieri.add(new StudentBursier(1029, "Bianca", "Popescu", "TI131/1", 9.10, 780.80));
         try {
-            scriereFisier(bursieri, "bursieri_out.txt");
+            scriereFisierBursieri(bursieri, "bursieri_out.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(Student s : bursieri) {
+        for(StudentBursier s : bursieri) {
             System.out.println(s);
         }
         for(int i=0; i< bursieri.size(); i++)
@@ -159,6 +197,21 @@ public class Application {
         bursieri.forEach(System.out::println);
 
         bursieri.forEach((Object o)->System.out.println(o));
+
+        //lab 7
+        List<Student> lista = new ArrayList<>(map_studenti.values());
+
+        for (int i = 0; i < lista.size()/2; i++) {
+            Student s = lista.get(i);
+            mutaStudent(map_studenti, s.getNumarMatricol(), "Grupa 1");
+        }
+        for (int i = lista.size()/2; i < lista.size(); i++) {
+            Student s = lista.get(i);
+            mutaStudent(map_studenti, s.getNumarMatricol(), "Grupa 2");
+        }
+
+        System.out.println("\nNoua lista:");
+        afisareMap(map_studenti);
     }
 
 }
