@@ -1,8 +1,6 @@
 package Students;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -129,6 +127,38 @@ public class Application {
         workbook.close();
     }
 
+    public static List<Student> readFromXls(String filename) throws IOException {
+        List<Student> lista = new ArrayList<>();
+        FileInputStream fis = new FileInputStream(filename);
+        Workbook workbook = new HSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0);
+        Iterator<Row> rowIterator = sheet.iterator();
+        if(rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+
+        while(rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            int nrMatricol = (int) row.getCell(0).getNumericCellValue();
+            String prenume = row.getCell(1).getStringCellValue();
+            String nume = row.getCell(2).getStringCellValue();
+            String formatie = row.getCell(3).getStringCellValue();
+            double nota = row.getCell(4).getNumericCellValue();
+
+            lista.add(new Student(
+                    nrMatricol,
+                    prenume,
+                    nume,
+                    formatie,
+                    nota
+            ));
+        }
+
+        fis.close();
+        workbook.close();
+        return lista;
+    }
+
     public static void main() throws IOException {
         List<Student> lista_studenti = new ArrayList<>();
         citireFisier(lista_studenti, "studenti_in.txt");
@@ -244,7 +274,11 @@ public class Application {
         String xlsFileName="laborator8_students.xls";
         writeToXls(lista,xlsFileName);
 
-
+        List<Student> studentsFromXls=readFromXls(xlsFileName);
+        System.out.println("\n Studenti cititi din xlsx:");
+        for(Student st: studentsFromXls) {
+            System.out.println(st);
+        }
     }
 
 }
