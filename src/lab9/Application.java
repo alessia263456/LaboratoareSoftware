@@ -65,8 +65,8 @@ public class Application {
                 .filter(s->s.startsWith("p"))
                 .findAny();
         if(element.isPresent())
-            System.out.println("e) Cuvant care incepe cu p: "+element.get());
+            System.out.println("c) Cuvant care incepe cu p: "+element.get());
         else
-            System.out.println("e) Nu exista cuvant care incepe cu p");
+            System.out.println("c) Nu exista cuvant care incepe cu p");
     }
 }
