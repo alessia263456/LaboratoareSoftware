@@ -1,7 +1,6 @@
 package lab9;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Application {
     public static void main(String[] args) {
@@ -47,14 +46,19 @@ public class Application {
         List<String> cuvinte = Arrays.stream(text.split(" ")).toList();
         System.out.println(cuvinte);
 
-        List<String> cuvinteFitru1=cuvinte.stream()
+        List<String> cuvinteFitrate =cuvinte.stream()
                 .filter(s->s.length()>=5)
                 .toList();
         long ctCuvinteFiltrate=cuvinte.stream()
                 .filter(s->s.length()>=5)
                 .count();
         System.out.println("a)");
-        System.out.println("Lista cuvinte cu lungime >=5 : "+cuvinteFitru1);
+        System.out.println("Lista cuvinte cu lungime >=5 : "+ cuvinteFitrate);
         System.out.println("Numar cuvinte: "+ctCuvinteFiltrate);
+
+        List<String> listaSortata= cuvinteFitrate.stream()
+                .sorted()
+                .toList();
+        System.out.println("b) Lista sortata: "+listaSortata);
     }
 }
