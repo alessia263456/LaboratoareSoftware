@@ -279,6 +279,57 @@ public class Application {
         for(Student st: studentsFromXls) {
             System.out.println(st);
         }
+
+        //lab9
+        List<Student> studentiCuNote = Arrays.asList(
+                new Student(1025, "Andrei", "Popa", "ISM141/2", 8.70),
+                new Student(1024, "Ioan", "Mihalcea", "ISM141/1", 10),
+                new Student(1026, "Anamaria", "Prodan", "TI131/1", 8.90),
+                new Student(1029, "Bianca", "Popescu", "TI131/1", 10),
+                new Student(1029, "Maria", "Pana", "TI131/2", 4.10),
+                new Student(1029, "Gabriela", "Mohanu", "TI131/2", 7.33),
+                new Student(1029, "Marius", "Nasta", "TI131/2", 3.20),
+                new Student(1029, "Marius", "Nasta", "TI131/1", 5.12),
+                new Student(1029, "Andrei", "Dobrescu", "TI131/2", 2.22)
+        );
+        System.out.println("\n9.3.3");
+        List<Student> studentiCuNota10 = studentiCuNote.stream()
+                .filter(s->s.getNota()==10)
+                .toList();
+        System.out.println("a) Studenti cu nota 10:");
+        studentiCuNota10.forEach(System.out::println);
+
+        List<Student> studentiCuNotaSub5 = studentiCuNote.stream()
+                .filter(s->s.getNota()<5)
+                .toList();
+        System.out.println("b) Studenti cu nota sub 5:");
+        studentiCuNotaSub5.forEach(System.out::println);
+
+        studentiCuNote=studentiCuNote.stream()
+                .map(s->{
+                    if(s.getNota()<4){
+                        return new Student(
+                                s.getNumarMatricol(),
+                                s.getNume(),
+                                s.getPrenume(),
+                                s.getFormatieDeStudiu(),
+                                4
+                        );
+                    }
+                    return s;
+                })
+                .toList();
+        System.out.println("c)");
+        studentiCuNote.forEach(System.out::println);
+
+        double sumaNote=studentiCuNote.stream()
+                .map(Student::getNota)
+                .reduce(0.0,(a,b)->a+b);
+        System.out.println("d) Suma notelor: "+sumaNote);
+
+        double media=sumaNote/studentiCuNote.size();
+        System.out.println("e) Media: "+media);
+
     }
 
 }
