@@ -60,5 +60,13 @@ public class Application {
                 .sorted()
                 .toList();
         System.out.println("b) Lista sortata: "+listaSortata);
+
+        Optional<String> element=cuvinteFitrate.stream()
+                .filter(s->s.startsWith("p"))
+                .findAny();
+        if(element.isPresent())
+            System.out.println("e) Cuvant care incepe cu p: "+element.get());
+        else
+            System.out.println("e) Nu exista cuvant care incepe cu p");
     }
 }
