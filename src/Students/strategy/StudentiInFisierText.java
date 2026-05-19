@@ -1,4 +1,6 @@
-package Students;
+package Students.strategy;
+
+import Students.Student;
 
 import java.io.*;
 import java.nio.file.Files;

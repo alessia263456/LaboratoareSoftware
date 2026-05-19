@@ -1,4 +1,6 @@
-package Students;
+package Students.strategy;
+
+import Students.Student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,17 +22,21 @@ public class AplicatieCuStrategy {
         System.out.println("a) Afisare in consola");
         IStudentiExport strategyConsole=new StudentiInConsola();
         Exporter exporter=new Exporter();
-        exporter.startExport(strategyConsole, studenti);
+        exporter.setStrategy(strategyConsole);
+        exporter.startExport(studenti);
 
         System.out.println("b) Afisare in fisier txt");
         String fileName= "studentiStrategyText.txt";
-        StudentiInFisierText strategyFisierText = new StudentiInFisierText(fileName);
-        exporter.startExport(strategyFisierText, studenti);
+
+        IStudentiExport strategyFisierText = new StudentiInFisierText(fileName);
+        exporter.setStrategy(strategyFisierText);
+        exporter.startExport( studenti);
 
         System.out.println("c) Afisare in fisier xls");
         fileName = "studentiStrategyExcel.xls";
-        StudentiInFisierXlsx strategyFisierExcel = new StudentiInFisierXlsx(fileName);
-        exporter.startExport(strategyFisierExcel, studenti);
+        IStudentiExport strategyFisierExcel = new StudentiInFisierXlsx(fileName);
+        exporter.setStrategy(strategyFisierExcel);
+        exporter.startExport(studenti);
 
         System.out.println("d) Citire din fisier txt");
         fileName = "studentiCuNote_in.txt";
