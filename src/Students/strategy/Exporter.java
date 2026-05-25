@@ -10,7 +10,7 @@ public class Exporter {
         this.strategy=strategy;
     }
 
-    void startExport(List<Student> students)
+    public void startExport(List<Student> students)
     {
         strategy.doExport(students);
     }

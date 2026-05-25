@@ -1,6 +1,6 @@
-package Students.strategy;
+package Students;
 
-import Students.Student;
+import Students.strategy.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
