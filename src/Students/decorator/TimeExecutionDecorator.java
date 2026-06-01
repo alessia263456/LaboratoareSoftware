@@ -5,17 +5,23 @@ import Students.strategy.IStudentiExport;
 
 import java.util.List;
 
-public class TimeExecutionDecorator extends TimeExecution {
-    private List<Student> studenti;
+public class TimeExecutionDecorator implements IStudentiExport {
 
-    public TimeExecutionDecorator(IStudentiExport exporter, List<Student> studenti) {
-        super(exporter);
-        this.studenti = studenti;
+    private final IStudentiExport exporter;
+
+    public TimeExecutionDecorator(IStudentiExport exporter) {
+        this.exporter = exporter;
     }
 
-    public long executionTime()
-    {
-        long execTime=super.executionTime(studenti);
-        return execTime;
+    @Override
+    public void doExport(List<Student> studenti) {
+        long start = System.currentTimeMillis();
+
+        exporter.doExport(studenti);
+
+        long end = System.currentTimeMillis();
+
+        System.out.println(
+                "Execution time: " + (end - start) + " ms");
     }
 }

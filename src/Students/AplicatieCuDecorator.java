@@ -1,6 +1,5 @@
 package Students;
 
-import Students.decorator.TimeExecution;
 import Students.decorator.TimeExecutionDecorator;
 import Students.strategy.IStudentiExport;
 import Students.strategy.StudentiInConsola;
@@ -31,10 +30,9 @@ public class AplicatieCuDecorator{
         );
 
         for (IStudentiExport strategy : strategies) {
-            TimeExecutionDecorator decorator = new TimeExecutionDecorator(strategy, studenti);
-            long time = decorator.executionTime();
-            System.out.println("Execution time: " + time + " for " + strategy);
-
+            IStudentiExport decoratedExport=new TimeExecutionDecorator(strategy);
+            System.out.println("Executing strategy: "+strategy.getClass());
+            decoratedExport.doExport(studenti);
         }
     }
 }
