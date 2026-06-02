@@ -17,7 +17,10 @@ public class ApplicationLab12 {
 
 
         try {
-            Thread.sleep(1500);
+            t1.join();
+            t2.join();
+            t3.join();
+            t4.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
